@@ -11,7 +11,7 @@
 #
 # You should have received a copy of the GNU Lesser General Public License
 # along with this library.  If not, see <http://www.gnu.org/licenses/>.
-### END LICENSE
+# ## END LICENSE
 import datetime
 
 '''
@@ -283,3 +283,19 @@ def ad2bs(ad_date):
     else:
         date_delta = count_ad_days(ad_equiv, ad_date)
         return add_bs_days(bs_equiv, date_delta)
+
+
+def today():
+    '''
+    Returns today's date in B.S. as tuple in the format (year, month, day)
+    '''
+    (year, month, day) = ad2bs(datetime.date.today())
+    return unicode(year) + '-' + unicode(month) + '-' + unicode(day)
+
+
+def today_as_str():
+    '''
+    Returns today's date in B.S. as string in the format 'YYYY-MM-DD'
+    '''
+    (year, month, day) = ad2bs(datetime.date.today())
+    return unicode(year) + '-' + unicode(month) + '-' + unicode(day)
