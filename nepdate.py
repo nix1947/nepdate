@@ -193,7 +193,7 @@ def count_bs_days(begin_bs_date, end_bs_date):
     begin_year, begin_month, begin_day = begin_bs_date
     end_year, end_month, end_day = end_bs_date
     days = 0
-    #1) First add total days in all the years
+    # 1) First add total days in all the years
     for year in range(begin_year, end_year + 1):
         for days_in_month in bs[year]:
             days = days + days_in_month
@@ -243,7 +243,7 @@ def add_bs_days(bs_date, num_days):
     Tuple in the dictionary starts from 0
     '''
     (year, month, day) = bs_date
-    #1) Add the total number of days to the original days
+    # 1) Add the total number of days to the original days
     day = day + num_days
     #2) Until the number of days becomes applicable to the current month, subtract the days by the number of days in the current month and increase the month
     while day > bs[year][month - 1]:
@@ -299,3 +299,20 @@ def today_as_str():
     '''
     (year, month, day) = ad2bs(datetime.date.today())
     return unicode(year) + '-' + unicode(month) + '-' + unicode(day)
+
+
+def is_valid(date_as_str):
+    '''
+    Checks if the fed date string is a valid B.S. date
+    date_as_str: String in the format 'YYYY-MM-DD'
+    Returns True for valid date, False for invalid.
+    '''
+    try:
+        (year, month, day) = [int(p) for p in date_as_str.split('-')]
+    except ValueError:
+        return False
+    if not 0 < month < 13:
+        return False
+    if not 0 < day <= bs[year][month - 1]:
+        return False
+    return True
