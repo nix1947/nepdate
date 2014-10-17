@@ -313,6 +313,9 @@ def is_valid(date_as_str):
         return False
     if not 0 < month < 13:
         return False
-    if not 0 < day <= bs[year][month - 1]:
-        return False
+    try:
+        if not 0 < day <= bs[year][month - 1]:
+            return False
+    except:
+        raise Exception ('The year ' + unicode(year) + ' isn\'t supported.')
     return True
