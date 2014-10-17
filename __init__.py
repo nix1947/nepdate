@@ -197,7 +197,7 @@ def count_bs_days(begin_bs_date, end_bs_date):
     for year in range(begin_year, end_year + 1):
         for days_in_month in bs[year]:
             days = days + days_in_month
-    #2) Subtract the days from first (n-1) months of the beginning year
+    # 2) Subtract the days from first (n-1) months of the beginning year
     for month in range(0, begin_month):
         days = days - bs[begin_year][month]
     #3) Add the number of days from the last month of the beginning year
@@ -245,7 +245,7 @@ def add_bs_days(bs_date, num_days):
     (year, month, day) = bs_date
     # 1) Add the total number of days to the original days
     day = day + num_days
-    #2) Until the number of days becomes applicable to the current month, subtract the days by the number of days in the current month and increase the month
+    # 2) Until the number of days becomes applicable to the current month, subtract the days by the number of days in the current month and increase the month
     while day > bs[year][month - 1]:
         day = day - bs[year][month - 1]
         month = month + 1
@@ -289,15 +289,14 @@ def today():
     '''
     Returns today's date in B.S. as tuple in the format (year, month, day)
     '''
-    (year, month, day) = ad2bs(datetime.date.today())
-    return unicode(year) + '-' + unicode(month) + '-' + unicode(day)
+    return ad2bs(tuple_from_date(datetime.date.today()))
 
 
 def today_as_str():
     '''
     Returns today's date in B.S. as string in the format 'YYYY-MM-DD'
     '''
-    (year, month, day) = ad2bs(datetime.date.today())
+    (year, month, day) = ad2bs(tuple_from_date(datetime.date.today()))
     return unicode(year) + '-' + unicode(month) + '-' + unicode(day)
 
 
@@ -317,5 +316,5 @@ def is_valid(date_as_str):
         if not 0 < day <= bs[year][month - 1]:
             return False
     except:
-        raise Exception ('The year ' + unicode(year) + ' isn\'t supported.')
+        raise Exception('The year ' + unicode(year) + ' isn\'t supported.')
     return True
