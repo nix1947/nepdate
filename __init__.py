@@ -200,14 +200,14 @@ def count_bs_days(begin_bs_date, end_bs_date):
     # 2) Subtract the days from first (n-1) months of the beginning year
     for month in range(0, begin_month):
         days = days - bs[begin_year][month]
-    #3) Add the number of days from the last month of the beginning year
+    # 3) Add the number of days from the last month of the beginning year
     days = days + bs[begin_year][12 - 1]
-    #4) Subtract the days from the last months from the end year
+    # 4) Subtract the days from the last months from the end year
     for month in range(end_month - 1, 12):
         days = days - bs[end_year][month]
-    #5) Add the beginning days excluding the day itself
+    # 5) Add the beginning days excluding the day itself
     days = days - begin_day - 1
-    #5) Add the last remaining days excluding the day itself
+    # 5) Add the last remaining days excluding the day itself
     days = days + end_day - 1
     return days
 
@@ -249,7 +249,7 @@ def add_bs_days(bs_date, num_days):
     while day > bs[year][month - 1]:
         day = day - bs[year][month - 1]
         month = month + 1
-        #3) If month reaches 12, increase the year by 1 and set the month to 1
+        # 3) If month reaches 12, increase the year by 1 and set the month to 1
         if month > 12:
             month = 1
             year = year + 1
