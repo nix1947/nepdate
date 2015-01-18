@@ -126,6 +126,12 @@ bs[2089] = (30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 30, 30)
 bs[2090] = (30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 30, 30)
 
 def string_from_tuple(tuple_to_convert):
+    '''
+    Returns the given tuple as string in the format YYYY-MM-DD
+
+    tuple_to_convert : A tuple in the format (year,month,day)
+
+    '''
     (year, month, day) = tuple_to_convert
     return str(year)+'-'+str(month).zfill(2)+'-'+str(day).zfill(2)
 
@@ -267,7 +273,7 @@ def bs2ad(bs_date):
     bs_date : A tuple in the format (year,month,day)
 
     '''
-    if type(bs_date) == datetime.date:
+    if isinstance(bs_date, datetime.date):
         bs_date = tuple_from_date(bs_date)
     if isinstance(bs_date, unicode) or isinstance(bs_date, str):
         bs_date = tuple(map(int, bs_date.split('-')))
@@ -286,7 +292,7 @@ def ad2bs(ad_date):
 
     bs_date : A tuple in the format (year,month,day)
     '''
-    if type(ad_date) == datetime.date:
+    if isinstance(ad_date, datetime.date):
         ad_date = tuple_from_date(ad_date)
     (year, month, day) = ad_date
     if year < 1944 or year > 2033 or month < 1 or month > 12 or day < 1 or day > 31:
