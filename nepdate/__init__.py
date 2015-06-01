@@ -280,7 +280,8 @@ def bs2ad(bs_date):
 
     (year, month, day) = bs_date
     if year < 2000 or year > 2089 or month < 1 or month > 12 or day < 1 or day > 32:
-        return None
+        # return None
+        raise ValueError('Invalid BS Date')
     else:
         date_delta = count_bs_days(bs_equiv, bs_date)
         return add_ad_days(ad_equiv, date_delta)
@@ -296,7 +297,8 @@ def ad2bs(ad_date):
         ad_date = tuple_from_date(ad_date)
     (year, month, day) = ad_date
     if year < 1944 or year > 2033 or month < 1 or month > 12 or day < 1 or day > 31:
-        return None
+        # return None
+        raise ValueError('Invalid AD Date')
     else:
         date_delta = count_ad_days(ad_equiv, ad_date)
         return add_bs_days(bs_equiv, date_delta)
